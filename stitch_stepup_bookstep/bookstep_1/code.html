@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .book-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .book-card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 20px 40px rgba(30, 41, 59, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdcc5",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-container": "#693300",
+                        "on-surface-variant": "#464555",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#62fae3",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "muted-steel": "#64748B",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        "primary": "#3525cd",
+                        "ink-slate": "#1E293B",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline": "#777587",
+                        "on-tertiary-fixed": "#00201c",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#5af3dd",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#0f0069",
+                        "on-secondary-fixed-variant": "#713700",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-fixed-dim": "#ffb783",
+                        "fresh-mint": "#2DD4BF",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-container": "#fd933d",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#4d44e3",
+                        "discovery-orange": "#FB923C",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f7f9fb",
+                        "primary-container": "#4f46e5",
+                        "tertiary": "#005349",
+                        "on-secondary-fixed": "#301400",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#006d61",
+                        "book-indigo": "#4F46E5",
+                        "on-primary-container": "#dad7ff",
+                        "secondary": "#944a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "container-padding-desktop": "2rem",
+                        "container-padding-mobile": "1rem",
+                        "section-gap": "3rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Be Vietnam Pro"],
+                        "body-sm": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Be Vietnam Pro"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-on-surface shadow-[0px_4px_20px_rgba(30,41,59,0.05)] sticky top-0 z-50 transition-all duration-300">
+<nav class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed shrink-0" href="#">BookStep</a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary hover:text-primary dark:hover:text-primary-fixed transition-colors py-1" href="#">둘러보기</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors py-1" href="#">내 서재</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors py-1" href="#">장르별</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors py-1" href="#">커뮤니티</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 w-64 focus:outline-none focus:border-book-indigo focus:ring-1 focus:ring-book-indigo transition-all font-body-sm text-body-sm" placeholder="읽고 싶은 책을 검색해보세요" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop pb-24 md:pb-12">
+<!-- Hero Section: Today's Featured -->
+<section class="mt-8 md:mt-12 rounded-3xl overflow-hidden relative group">
+<div class="grid md:grid-cols-2 bg-primary dark:bg-primary-container min-h-[400px] md:min-h-[480px]">
+<div class="p-8 md:p-16 flex flex-col justify-center items-start text-white relative z-10">
+<span class="bg-discovery-orange text-white px-4 py-1 rounded-full font-label-caps text-label-caps mb-4 animate-bounce">오늘의 추천</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight">청소년의 사춘기,<br/>그 찬란한 성장통</h1>
+<p class="font-body-lg text-body-lg text-on-primary-container opacity-90 mb-8 max-w-md">이달의 가장 주목받는 YA 베스트셀러. 평범한 열일곱 소년의 특별한 우정과 모험을 담은 감동의 이야기를 만나보세요.</p>
+<div class="flex gap-4">
+<button class="bg-white text-primary px-8 py-3 rounded-xl font-label-bold text-label-bold hover:scale-105 transition-transform">지금 바로 읽기</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-3 rounded-xl font-label-bold text-label-bold hover:bg-white/20 transition-all">목록에 저장</button>
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="absolute inset-0 bg-gradient-to-l from-primary-container/20 to-transparent z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A cinematic 3D digital illustration of a stack of books with glowing magical particles swirling around them. The lighting is dramatic and warm, set against a dark indigo background. High-quality YA novel aesthetic with vibrant colors like sunset orange and deep violet. Professional lighting, highly detailed textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Nf_EJ-FmiHku0FKlOK_PKrz22DMvJTdgilLwz82B28nnNTKuo810qCiafu81AwXCxeSYEjjy7WXAlqtnHq65-vGCy-WUtIS9h95fPjm9L9vP5WMY60MHXt57MQWKiCrw4EwIvLULrLSAauOGQxqeX25GNUXpPyTumhS1MSqwDgX4AI_GIxUlSM4XosMg3zTz2JsiLSBgehC4_PitIC1M_JyBV4B6y_TSiMCP0rMD4yZXi5ZT03X-56ltHqoBDtDxWDbSw79s8AeX"/>
+</div>
+</div>
+</section>
+<!-- Section 1: Personalized Grid -->
+<section class="mt-section-gap">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">사용자님을 위한 맞춤 추천</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">평소 '미스터리/판타지' 장르를 좋아하는 당신에게</p>
+</div>
+<button class="text-primary font-label-bold text-label-bold flex items-center gap-1 hover:underline transition-all">
+                    모두 보기 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-gutter">
+<!-- Generating Cards -->
+<div class="bg-surface-container-lowest p-4 rounded-3xl book-card-hover border border-outline-variant shadow-[0px_4px_20px_rgba(30,41,59,0.05)] group">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern book cover for a mystery novel titled 'The Hidden Path'. Dark navy background with a single glowing golden key in the center. Minimalist and corporate clean style. High resolution digital art, soft atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAc0dO-iQvso3f5cr2iKvlLTa0UTMEjr23-ZeZrmt3uEDLvaU_FLjo9mRHoS5unZlgMrAHgBv4S702xFh1BTC6aBMlXFRllesEgX0SG9WegMJ-88SIKpmorgjJEF1HljOAcfrYmubjf7lW3OPlO32ddH-5O453pwnYq3yugO1WWbcD_LY-StXAiuiNAHu8bL0FAlyGqeuNxn1lpUyzZkxMxa8u8zIjRPsJ3Y4uhL7rhYOHcy6olGF-7qs2NB4gsFo6al6Vcs-Bmnd1"/>
+<span class="absolute top-3 right-3 bg-fresh-mint text-ink-slate px-2 py-1 rounded-lg font-label-caps text-[10px] uppercase font-bold shadow-md">대출 가능</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">숨겨진 길의 열쇠</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">김은희 작가</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">미스터리</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-3xl book-card-hover border border-outline-variant shadow-[0px_4px_20px_rgba(30,41,59,0.05)] group">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant book cover for a young adult romance novel. Features two stylized teenage silhouettes walking under a cherry blossom tree. Pastel color palette with soft pinks and blues. Minimalist modern corporate aesthetic, clean lines, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEndITHtqhoJ0n-XeNu67TemyJYAprFvZF4gvCkOU6TQ3_pht-9wh0UtBfj6mEx8TYpHWH2EAj-3ER5xlnLA8PvRlMM_hv00ZbqL-0Ziydev5f3tCXvlxZWe67h5xFquSswfLH-pjr5maK6TM21Pwlmwk64hywNKsId4rVo0LmrK-RJlW6lTVwufdQHv_YIzzaYoiABRlEZT6tRrkH1eK3uBB1Rh8znhNApCt3wW5CyZclz2JOvsshT7jLqhKUrolW_TuAH1RskrDA"/>
+<span class="absolute top-3 right-3 bg-error-container text-on-error-container px-2 py-1 rounded-lg font-label-caps text-[10px] uppercase font-bold shadow-md">대출 중</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">너와 나의 계절</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">이아름 작가</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">로맨스</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-3xl book-card-hover border border-outline-variant shadow-[0px_4px_20px_rgba(30,41,59,0.05)] group">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Futuristic science fiction book cover illustration. A sleek chrome spaceship orbiting a ringed neon planet. Deep space background with twinkling stars. Professional digital painting style, sharp details, vibrant turquoise and purple accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzR8elqJhrLpe3ZXU939L2Mw2-4nI-alxNt3rlpF_yTpdFMalCzc5zxZ_jjRGcqmHaIMAj27OzUolPnFdIslKL9joJ5VXitluEPo-zEFxqXO148s4YhcEQ4uUnx-DMMqNFjATjBPbQvNvPVrWVZeMNFh2IfslgWwU7R-YnXrup2c3pVLtVIW5_EyAek1FPrYKHl9O6PBkvVyRnEt-7sXFZXDBO3qIRs84w5MDFIeUZ7amiPePT-t0v7PrwfKbjQIbWPK70ITvRR8bm"/>
+<span class="absolute top-3 right-3 bg-fresh-mint text-ink-slate px-2 py-1 rounded-lg font-label-caps text-[10px] uppercase font-bold shadow-md">대출 가능</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">네온 시티의 역습</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">최진우 작가</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">SF</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-3xl book-card-hover border border-outline-variant shadow-[0px_4px_20px_rgba(30,41,59,0.05)] group">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High fantasy book cover with a detailed illustration of a crystalline dragon perched on a mountain peak. Epic atmospheric lighting with golden sun rays. Traditional digital art style, rich textures, deep emerald and gold color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHBqwbNwT6VHKQUpARC145hLNUc5qhSl8_eLKiymFbh__JqgNEnPxS1c6LF0qGJhlqxjEO8qRx2IzkJEQx1D8tz8QSc4V2wiCBmzwe0wrS2A_7V5Cph931ByJzzkdD0z_Yujmdmi-Tb7pgB-U1MmvDnrYyreiAaPRltLbegF1YR9mtStWvyOEY2xtLkpBNflgpBag8aVmSbJO6MRacbtNNkezj5tonx3IRm9-YmlaaqyfKVfKsNpl5nz_NT09o9d_8qptlZkKd-3AZ"/>
+<span class="absolute top-3 right-3 bg-fresh-mint text-ink-slate px-2 py-1 rounded-lg font-label-caps text-[10px] uppercase font-bold shadow-md">대출 가능</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">크리스탈 드래곤</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">아서 펜드래건</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">판타지</span>
+</div>
+</div>
+<div class="hidden lg:block bg-surface-container-lowest p-4 rounded-3xl book-card-hover border border-outline-variant shadow-[0px_4px_20px_rgba(30,41,59,0.05)] group">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern corporate style book cover for a self-improvement book. Bright white background with bold colorful geometric abstract shapes. Clean typography, professional look, inspirational mood with high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXVSIWhVJwFtJyA6n8nkBsNVcKStbVv3nbvwRN8Q20u91DgUVxVurd--5s9gbOqNUowmUjRVbXt07-Ckn0ZT7eNHuY_N3lnJ2xs65jn71PJw1MnKtZrvzgBX-QOcPxNuXQ_xUyhSP9E84zPbsgeDERitIk9k5Hyz_9nmqaNNpcfYmR8uqcBYh5b_0qKk1A9zWTwH_xROy_4Epx8ppetH65xtGJ7GWEx0BuZd0WQpoiJWn3I3y3ZGwCKq9nhumgQ72IBgAlQuSKVF6_"/>
+<span class="absolute top-3 right-3 bg-error-container text-on-error-container px-2 py-1 rounded-lg font-label-caps text-[10px] uppercase font-bold shadow-md">대출 중</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">나를 찾는 기술</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">송지은 작가</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">인문</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: New Arrivals Horizontal List -->
+<section class="mt-section-gap">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8">이달의 신간 도서</h2>
+<div class="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x">
+<!-- Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-white p-6 rounded-3xl shadow-sm border border-surface-container-high snap-start flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-24 h-32 bg-surface-variant rounded-xl overflow-hidden shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover design with a single red dot in a sea of white. Conceptual art style, professional graphic design, very clean and sophisticated aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKokhuwliNQIkxSXjIbsqR-rNNeIFxJAPq6D0LRgdsZuz2sMaguzzuCJ_0BU0GCDXjbWChDErqsfaP-KVc0p-0B_iF6fYdjtpL-qKhvMp98fWVLs3i_6ziFlkblSBdmSapGNrfzuHWs72gXFs3U5Dwqlqq2sXMjL3o7144IRANSEOFkJQp1_ZX1sr0o-XnmzmOW-IIJp6QA8-VSyKGibkElkuyiDVNtJcVq5DalKk0xatWPjVFqbuEKd-7HUoNEBHIXjMWyR_eWhmv"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-[10px] text-discovery-orange mb-1">신간</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight mb-1">빨간 점의 의미</h4>
+<p class="font-body-sm text-body-sm text-outline mb-2">홍길동 저</p>
+<button class="text-primary font-label-bold text-label-bold self-start border-b border-primary/20">지금 대출하기</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-white p-6 rounded-3xl shadow-sm border border-surface-container-high snap-start flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-24 h-32 bg-surface-variant rounded-xl overflow-hidden shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A book cover showing a tranquil landscape painting of a quiet morning lake. Soft greens and blues, impressionist style, very calming and artistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkI8pM2hRD6gAZ0M5BRYnKPkBaKXjeetpM9Rw3rEQZqovrWw60HkgYWZrutwtkOjP7PWEv2mSIQmwId0zOomPKppIEf6hyarXXCmzy1ya7qIylu4YKsRNcrVSYyeHBElzKhh0ne7WZLw4LKx8o7dmSts4xa3Fg8vP7vJMb94nODM2dqzaqDvSEC8bkMO_3CeAM3bn16Q8DzOxGHYUGD9fxC-nvwrFYeb4E0xQ7pw7D9VSRSeVirPQU_jf-ypHs8lhjPbpkZv6Vo-q7"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-[10px] text-discovery-orange mb-1">신간</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight mb-1">새벽 호숫가에서</h4>
+<p class="font-body-sm text-body-sm text-outline mb-2">이미래 저</p>
+<button class="text-primary font-label-bold text-label-bold self-start border-b border-primary/20">지금 대출하기</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-white p-6 rounded-3xl shadow-sm border border-surface-container-high snap-start flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-24 h-32 bg-surface-variant rounded-xl overflow-hidden shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Sci-fi tech book cover with a digital circuit board pattern overlay on a human silhouette. Electric blue glow on black background. High-tech futuristic look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIx8RLRU4kM2MIaPq62mDpg3K_2_JgkzarXieiVZY6pZfSm28zwBahAhbY-aDOqO-XKvVNPQ9E2XB3b9lGAusBdJCV-mG-YCRXfq0BeKZXersOuk6sFvN2CesgY5TBDf_UQ2BywVyTzQn2CrGUXb6_yUdtdngRFAz6vPw0urzI5svQDcWFBUCwVD6IOKRZFvhNutwnjtOo0C0TbV-Pm1S2MsRozM2w-813jhrHvvA8MqG1OM_IRasre4sGQ183QI37SdxgRrPF-6XP"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-[10px] text-discovery-orange mb-1">신간</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight mb-1">코드: 인류</h4>
+<p class="font-body-sm text-body-sm text-outline mb-2">박지성 저</p>
+<button class="text-primary font-label-bold text-label-bold self-start border-b border-primary/20">지금 대출하기</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-white p-6 rounded-3xl shadow-sm border border-surface-container-high snap-start flex gap-4 hover:shadow-md transition-shadow">
+<div class="w-24 h-32 bg-surface-variant rounded-xl overflow-hidden shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Abstract art book cover with vibrant splashes of yellow and purple paint. Modern expressionist style, high energy, professional gallery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbzZ0dLBIJSk8YiwF9Rwpq65J9KqQlqxsIBJwNsnNTZZni_6_p6pWs_mK2YP-_FKQnEdDy7f3bLnswxzwKcOarcfRVUbFQsZvxURqgcL3udxeV9LQEt5E-hhBg2PPPhrCR1_t6qlYAsYd_vtdaRZB5HO-B-7rBtFLzlPmxHlps-NU70kfNsLkaFmxhf_iY-Ae6H5tQNd6mEfPc_6FfSIBFg-803PyUvm3bk9BgvsOo9uj3hTVn0baJ3fWLd-LZ6zrPgEOftubPUMHz"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-[10px] text-discovery-orange mb-1">신간</span>
+<h4 class="font-headline-sm text-headline-sm leading-tight mb-1">색채의 해방</h4>
+<p class="font-body-sm text-body-sm text-outline mb-2">전수아 저</p>
+<button class="text-primary font-label-bold text-label-bold self-start border-b border-primary/20">지금 대출하기</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Trending Bento Layout -->
+<section class="mt-section-gap">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8">실시간 인기 대출 도서</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Rank 1 (Featured Bento Item) -->
+<div class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-surface-container-low to-surface p-8 rounded-[40px] border border-outline-variant relative overflow-hidden group">
+<div class="relative z-10 flex flex-col md:flex-row gap-8 h-full">
+<div class="md:w-1/2">
+<span class="text-[64px] font-black text-primary/10 absolute -top-4 -left-2 select-none">01</span>
+<h3 class="font-display-lg-mobile text-display-lg-mobile mt-4 mb-4">소년이 온다</h3>
+<p class="text-on-surface-variant font-body-md mb-6">현재 2,492명의 독자가 이 책을 읽고 있습니다. 인간의 본성과 생존의 의미를 묻는 강렬한 서사.</p>
+<div class="flex items-center gap-4 mb-8">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-400"></div>
+</div>
+<span class="text-body-sm font-label-bold text-muted-steel">내 친구 외 500+명 대출 중</span>
+</div>
+<button class="bg-primary text-white px-8 py-3 rounded-xl font-label-bold text-label-bold hover:shadow-lg transition-all active:scale-95">예약 대기하기</button>
+</div>
+<div class="md:w-1/2 relative group-hover:scale-105 transition-transform duration-700">
+<img class="w-full aspect-[3/4] object-cover rounded-2xl shadow-2xl rotate-3" data-alt="A powerful and emotional book cover illustration. A stark, dramatic charcoal sketch of a young boy looking into the distance. Minimalist black and white style with a single red ribbon. Deep emotional impact, high contrast, museum quality digital art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJkcgv2IJfnrhH4WMdmiEmrDMo3hEWOJtihhpRkc8A0wXWZKP2DGItn2N8hbgcFvKGdUx6Vi3AmfwepzSUGi4l3XDCzPpS9dWdQL4UvpJAsTLX9pScsJO6Q1XsQpMaXYPyT7WJ_QugRQvhgZuT4P8-pUFWOhfVYFkUi3_jvvdO2zeWp6CMTanDWFa5-WH-V09zPEX56gJETiemZdRocJg6axR_EMwrL_0Rl6dBYpJ0YRUlIgs_PHQIK9N2oClRrrJVFBeQwZKKmGBz"/>
+</div>
+</div>
+<!-- Subtle background decoration -->
+<div class="absolute -bottom-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Rank 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant flex items-center gap-4 hover:bg-surface transition-colors cursor-pointer group">
+<span class="font-display-lg text-headline-md text-primary/30 w-8">02</span>
+<div class="w-16 h-20 bg-surface-variant rounded-lg shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Book cover featuring a close-up of a clock face melting over a bookshelf. Surrealist digital art style, inspired by Salvador Dali. Rich warm tones of bronze and gold." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEMN53qm6FDSbffoSKGor6VlTD_hgnDuY9DFBgysGL3Ki4bkUA9VftsHNp-wdKXMTnOcA3bigIoMqemFdvJjrqnE9IP_muMjNQD7WeXJqFIA7bEJ17yArfq5GRjo7ucxy1lk8gBbDbqaGHUERL1lFR_0OZc23a9tVqUkstQnKtMNrexQSRiwTU3g4SokW3As_UEJ-awDsZb9-KSTb7rjGRp4HCtf6Y8aqKVA-ADnlXvP_SrnVfDMy3K0SGsf5z4gHc9vlVcJJI24R7"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-on-surface group-hover:text-primary transition-colors">시간의 모순</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">스티븐 호킹</p>
+</div>
+<span class="material-symbols-outlined text-fresh-mint">trending_up</span>
+</div>
+<!-- Rank 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant flex items-center gap-4 hover:bg-surface transition-colors cursor-pointer group">
+<span class="font-display-lg text-headline-md text-primary/30 w-8">03</span>
+<div class="w-16 h-20 bg-surface-variant rounded-lg shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A modern book cover illustration of a colorful brain made of interconnected glowing wires. Representing neuroscience and psychology. Vibrant neon colors against a dark grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbkKXm7XaxU4jL6-vo5lC6100C5JCh_dA6pMptD7Cnvugxl153_CkaQt3jZIpFjmEAER7Go8IZ2GJnH_1iHav94S6AhJmu3Bh5_OK9dXJrzbHXtUlWtg_BHPnXKptWOE0cTiKIBNE9z_aIjPuKftPM4Yp17ayQ5qSOM3bPyUIutZWiQ3kaZ7mxyLcYUNDsn3jvhJuUeTxYR3bKyQnd6GOQGWMXxf4yJ39gU1U7gni9v0JVXGVo4Dv4cVc2_yfmLGbRXd16HM8D3BGg"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-on-surface group-hover:text-primary transition-colors">생각의 지도</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">리처드 니스벳</p>
+</div>
+<span class="material-symbols-outlined text-fresh-mint">trending_up</span>
+</div>
+<!-- Rank 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant flex items-center gap-4 hover:bg-surface transition-colors cursor-pointer group">
+<span class="font-display-lg text-headline-md text-primary/30 w-8">04</span>
+<div class="w-16 h-20 bg-surface-variant rounded-lg shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Epic historical book cover showing a medieval stone castle perched on a cliffside during a sunset. Warm golden hour lighting, cinematic atmosphere, oil painting style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtmZINBssQw6VyWKbgotDzBU3YdVHtJdzD2UrRmO3pz2UnG0NzKQm0RPe2lTkcbwiIhGgQs2VzysGejnZk23XOvcq4RmPVxTDThYBcwOQLZSArHzFd65B7snyzTHUXLHlw6nasHBiWxZ7BCJbEJd9W19G9Q_qhq2HrIhsz1Z4KSdes_ejeHOz6bhFNxUgWyN7WvKMnc-Eznmo72cNRKp9YplBL6Ofx26Woa8KGRAYwvDQukyLGe7Ls2n_8OFBJDqDIpVZWzIul3525"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-on-surface group-hover:text-primary transition-colors">제국의 마지막 날</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">김진명</p>
+</div>
+<span class="material-symbols-outlined text-outline">horizontal_rule</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-on-surface w-full py-12 px-container-padding-mobile md:px-container-padding-desktop mt-section-gap">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="max-w-xs">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed mb-4">BookStep</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 BookStep 디지털 도서관. 책과 지식의 마법으로 청소년 독자들의 성장을 응원합니다.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+<div class="flex flex-col gap-3">
+<h5 class="font-label-bold text-label-bold text-on-surface">회사 소개</h5>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">소개</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">개인정보 처리방침</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">이용 약관</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-bold text-label-bold text-on-surface">고객 지원</h5>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">사서에게 문의하기</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">안전 센터</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all" href="#">도움말 센터</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-bold text-label-bold text-on-surface">소셜 미디어</h5>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">share</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">chat</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">mail</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-4 md:hidden bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-[0_-4px_20px_rgba(30,41,59,0.05)] z-50">
+<button class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-xl px-4 py-1 scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps mt-1">홈</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors py-1 px-3 rounded-xl">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps mt-1">둘러보기</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors py-1 px-3 rounded-xl">
+<span class="material-symbols-outlined">book_4</span>
+<span class="font-label-caps text-label-caps mt-1">내 서재</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors py-1 px-3 rounded-xl">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">내 정보</span>
+</button>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('py-2');
+                    header.classList.remove('py-4');
+                    header.classList.add('bg-white/80', 'backdrop-blur-md');
+                } else {
+                    header.classList.remove('py-2');
+                    header.classList.add('py-4');
+                    header.classList.remove('bg-white/80', 'backdrop-blur-md');
+                }
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-4', 'duration-700', 'fill-mode-both');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body></html>

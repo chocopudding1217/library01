@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdcc5",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1e",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-container": "#693300",
+                    "on-surface-variant": "#464555",
+                    "surface-container": "#eceef0",
+                    "tertiary-fixed": "#62fae3",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "muted-steel": "#64748B",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "primary": "#3525cd",
+                    "ink-slate": "#1E293B",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "outline": "#777587",
+                    "on-tertiary-fixed": "#00201c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#5af3dd",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#0f0069",
+                    "on-secondary-fixed-variant": "#713700",
+                    "surface": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "secondary-fixed-dim": "#ffb783",
+                    "fresh-mint": "#2DD4BF",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c7c4d8",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-container": "#fd933d",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#4d44e3",
+                    "discovery-orange": "#FB923C",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "primary-container": "#4f46e5",
+                    "tertiary": "#005349",
+                    "on-secondary-fixed": "#301400",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#006d61",
+                    "book-indigo": "#4F46E5",
+                    "on-primary-container": "#dad7ff",
+                    "secondary": "#944a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "container-padding-desktop": "2rem",
+                    "container-padding-mobile": "1rem",
+                    "section-gap": "3rem",
+                    "gutter": "1rem"
+            },
+            "fontFamily": {
+                    "label-bold": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-caps": ["Be Vietnam Pro"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .book-card-shadow {
+            box-shadow: 0px 4px 20px rgba(30, 41, 59, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2dfff;
+            border-radius: 10px;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-[100] bg-surface shadow-[0px_4px_20px_rgba(30,41,59,0.05)]">
+<nav class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">BookStep</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">탐색하기</a>
+<a class="text-primary font-bold border-b-2 border-primary" href="#">내 서재</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">장르</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">커뮤니티</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant items-center gap-2">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="도서 검색..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 md:py-12">
+<!-- Back Button Mobile Only -->
+<div class="md:hidden mb-6">
+<button class="flex items-center gap-2 text-primary font-label-bold">
+<span class="material-symbols-outlined">arrow_back</span>
+            서재로 돌아가기
+        </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left: Book Visuals -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="relative group">
+<div class="rounded-[24px] overflow-hidden shadow-2xl border border-outline-variant bg-white transition-transform duration-500 group-hover:scale-[1.02]">
+<img class="w-full aspect-[2/3] object-cover" data-alt="A professional studio photograph of a premium hardcover book with a vibrant deep indigo and gold foil cover design. The lighting is soft and cinematic, highlighting the elegant paper texture and the embossed title text. The book is angled slightly to showcase its spine and thickness, set against a clean, minimalist studio background in soft grey." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFnTrM-XXWmPtZJ5Y2WyAQXdF0d0Vx-QuqJMMRQwflxtcd4sJaE0SAGzdTlL4dGKiVptp9aMaXtFRtCLf4B36vZ35tvSpv0B_bM8OQE-pP2WJaQA3GwZ1lyiLojmu6KTZHctIwE4eWRiUaRhgYMN3U-u8O2UQGR3O6vltOYA0TG0UEKfrCKQEql83iQoUzTXI8ho2Il61i3rv7oyOM6f81STbK0MMNvtUnJVUM06nUV8wplL4-xywN08-54e7JIS4tHMzGqlPPHQCS"/>
+</div>
+<!-- Availability Chip Overlay -->
+<div class="absolute top-4 right-4 bg-fresh-mint text-white px-4 py-1.5 rounded-full font-label-caps shadow-lg flex items-center gap-1.5" id="availability-badge">
+<span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                    지금 대출 가능
+                </div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-book-indigo text-white py-4 rounded-xl font-label-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-md hover:brightness-110" id="loan-btn" onclick="handleLoan()">
+<span class="material-symbols-outlined">menu_book</span>
+<span id="loan-text">지금 대출하기</span>
+</button>
+<button class="p-4 rounded-xl border border-book-indigo text-book-indigo hover:bg-primary-fixed transition-all flex items-center justify-center">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<p class="text-center text-body-sm text-outline">대출 후 14일 동안 읽으실 수 있습니다.</p>
+</div>
+<!-- Right: Book Info & Details -->
+<div class="lg:col-span-8">
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded-full text-label-caps font-bold">청소년</span>
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-label-caps font-bold">SF/판타지</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-ink-slate leading-tight">양자 베일 너머 (Beyond the Quantum Veil)</h1>
+<p class="font-headline-sm text-headline-sm text-muted-steel">Elena Thorne 지음 • Nebula Publishing</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-surface-container-low rounded-2xl mb-8">
+<div class="flex flex-col">
+<span class="text-label-caps text-outline uppercase">평점</span>
+<div class="flex items-center gap-1 text-discovery-orange font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                        4.8 <span class="text-outline text-body-sm font-normal">(1.2k)</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps text-outline uppercase">페이지</span>
+<span class="font-body-md font-bold">432 페이지</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps text-outline uppercase">언어</span>
+<span class="font-body-md font-bold">영어</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps text-outline uppercase">출판일</span>
+<span class="font-body-md font-bold">2023년 10월</span>
+</div>
+</div>
+<!-- Description Bento Section -->
+<div class="flex flex-col gap-8">
+<section>
+<h2 class="font-headline-md text-headline-md text-ink-slate mb-4">줄거리</h2>
+<div class="prose prose-slate max-w-none text-body-md text-on-surface-variant leading-relaxed">
+<p>디지털 의식을 임시 아바타로 전송할 수 있는 미래, 17세 소년 잭스는 시스템의 결함을 발견합니다. 이 결함은 인류의 잃어버린 기억이 담긴 인터넷의 숨겨진 층인 '양자 베일(The Quantum Veil)'에 접속할 수 있게 해줍니다. 정부가 통제를 유지하기 위해 이러한 기억들을 의도적으로 삭제하고 있다는 사실을 깨달은 잭스는, 정해진 대로 관리되는 안전한 디지털 삶과 혼란스럽고 위험하지만 진실된 과거의 현실 사이에서 선택의 기로에 서게 됩니다.</p>
+<p class="mt-4">'양자 베일 너머'는 디지털 시대의 정체성, 기억, 그리고 완벽함에 대한 진정한 대가를 탐구하는 고에너지 여정입니다. 철학적인 SF와 빠른 전개의 기술 스릴러를 좋아하는 독자들에게 완벽한 선택이 될 것입니다.</p>
+</div>
+</section>
+<!-- Features/Keywords Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 bg-white border border-outline-variant rounded-2xl flex items-start gap-4">
+<div class="bg-primary-fixed-dim p-3 rounded-xl text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold mb-1">깊이 있는 서사</h4>
+<p class="text-body-sm text-outline">복잡한 도덕적 선택이 담긴 다층적인 스토리텔링.</p>
+</div>
+</div>
+<div class="p-6 bg-white border border-outline-variant rounded-2xl flex items-start gap-4">
+<div class="bg-tertiary-fixed-dim p-3 rounded-xl text-tertiary">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold mb-1">빠른 전개</h4>
+<p class="text-body-sm text-outline">책장을 멈출 수 없게 만드는 쉴 틈 없는 리듬.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Similar Recommendations -->
+<section class="mt-20">
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="text-label-caps text-book-indigo font-bold tracking-widest uppercase mb-2 block">SF 장르를 좋아하는 당신을 위한 추천</span>
+<h3 class="font-headline-md text-headline-md text-ink-slate">함께 읽으면 좋은 도서</h3>
+</div>
+<button class="text-primary font-label-bold flex items-center gap-1 group">
+                컬렉션 보기
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<!-- Card 1 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden book-card-shadow relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A striking minimalist book cover for a sci-fi novel titled 'Neon Echo'. The cover art features a clean, high-contrast illustration of a cyberpunk city skyline in shades of teal and electric orange, with sharp geometric lines and a soft atmospheric haze. The aesthetic is modern and sophisticated, perfect for a young adult audience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBujhrQ9wzFKAdbwhTp_7OxroipOw4l0YzPB2K9bSGQfwKnb0Y5k2lFsHf91tyDZ8lB_Uv6ZIVDIXkbO0lDk3-azRKQxiWyedU7KTJmXAEM97pVEI-tWVEA8mME-xdbhafEftlZBGaZHoI97GXMLwLXYgGzwbDAkOKK_OzYr03S87zq9yLFvPdBPgl9SeQFfEfger8x0rd26-iHHxG5fPpMGPIoJaG143vPkInRyvVLqkyE_gv7-HFCMZibn8RHhcJ7xURRyQDMIQq1"/>
+<div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-lg text-[10px] font-bold text-ink-slate shadow-sm">
+                        신작
+                    </div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-ink-slate truncate">네온 에코 (Neon Echo)</h4>
+<p class="text-body-sm text-outline">Liam S. Vance</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden book-card-shadow relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="An elegant book cover for a mystery novel titled 'The Silent Algorithm'. The design features a dark, deep navy background with intricate, golden circuit-like patterns forming the shape of a human fingerprint. The lighting suggests a glowing metallic sheen, creating an air of sophisticated high-tech intrigue and intellectual mystery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4b3t1vFiaAXv263mOaBxBcG-ZdKx2FRyJpNjhPSeY2t5gRnrpZz5vy2fYh0fbDv2-DsJsKRfD5BM3IZuR8crOzjYzGgE1VKwuQ_7r9TM0fD7bvUGf1HFlyMwDeLiW3CT1PSUEGJ0m2U9jnuFOytVktfvxa8_5iKeEUIcE__xY4QJtWsU-Dhroem57VTw8C_k-AEDuuR7kFwKeYkIdeEwMX35Ly3ijOtCjxyqXP2D7JxViQFO6StqTuVq8te5yD37LR_RUWaZAF9D6"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-ink-slate truncate">침묵의 알고리즘</h4>
+<p class="text-body-sm text-outline">Sarah Chen</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden book-card-shadow relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vibrant, energetic book cover for a sci-fi adventure titled 'Circuit Breakers'. The artwork is bold and colorful, featuring stylized graphic character silhouettes in action poses against a background of exploding geometric fragments in magenta, cyan, and yellow. The style is contemporary pop-art digital illustration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQEhRC4stzBAfCKOOUDD-F4B_Ve4QmJ52mSCih6di7qOBYNJPtRsSmhHFqdSWJ1kcR8u94XzW2JQcoFpTo5XR0vFR3MLZjcd6t6XSDoDtbkb8781l9cJopRqQ4SI92sIw_sRhqxI27dFmasIYnuASja2WVTpfNn-thC-LXDLBrp2jhR01p4FZVMUXqTs3soOMntmh1tiKp_dBZwTAnM1GNQhN9yCwZERTnBnrlgNhx_3Ezz1nvyfXlRAgjXxDPuwDGj5kAXemWRatt"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-ink-slate truncate">서킷 브레이커</h4>
+<p class="text-body-sm text-outline">R.G. Miller</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="hidden md:flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden book-card-shadow relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A cinematic book cover for a space opera titled 'Void Walker'. The illustration depicts a lone futuristic spaceship drifting near a massive, glowing nebula with swirling clouds of violet and deep blue gas. The lighting is dramatic and grand, emphasizing the vast scale of space and the lonely, adventurous spirit of the story." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCibyXqrtuGNDwuB2JYkOc3lvbsRlYe5yKu6-I_b0NfyAq6lXwDj3Mi9bgxl8BpJYW3b3AxpeB32rd4XTozmoeD7Xw6JmlCQpjFpns1ZHv718GCWqauiAPH6zkffM9a00wRMgOvyljvO0-ZbkbvFddi5Utmk9H4zyerubD660-5ecRXix3ETtrpiFj6_kmeY6RrE_umYIo525fAQBMKLMrsroudIrZvUfly2F7nmy9KWVSmOELGti0k-BIyleepzETobmOIG4MeFeXd"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-ink-slate truncate">보이드 워커</h4>
+<p class="text-body-sm text-outline">K. Astrum</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="hidden lg:flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden book-card-shadow relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A moody, atmospheric book cover for a psychological thriller titled 'System Reset'. The cover is mostly monochrome with a single sharp slash of bright crimson across a pixelated, distorted portrait. The typography is bold and modern, giving it a high-end, contemporary digital-concierge feel for high schoolers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZeGWVVIaZrg7TSUxKXprfT80M_gp3E5ZOBAAGEg9VoRRmsYZDM2_LfDGuxGzXgvBLTl7xny6EtWGG-vvSUEzkpO91oB8rHAtzXee5vup3RLSw_F7slgmfNygvOFjQNUaBTl24_VX8DUYBssq53VlihUjj0WTdzUFvT0NG0YJ7SV6vS1hCFU6ybXnbG_qOyDd5Ck_OVVG7_3TUB3EchTp0sBSlGThbZH527UL31CaQo2KBmKUw1RGIRLE5TsbkKrar9tLeOfqpTp3a"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-ink-slate truncate">시스템 리셋</h4>
+<p class="text-body-sm text-outline">Marcus Thorne</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="mt-20 py-12 border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="col-span-1">
+<h3 class="font-headline-md text-headline-md text-ink-slate mb-4">독자 리뷰</h3>
+<div class="flex items-center gap-4 mb-6">
+<span class="text-[48px] font-bold text-ink-slate">4.8</span>
+<div>
+<div class="flex text-discovery-orange">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<p class="text-body-sm text-outline">1,245개의 리뷰 기준</p>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl border border-outline-variant font-label-bold hover:bg-surface-container-low transition-colors">
+                    리뷰 작성하기
+                </button>
+</div>
+<div class="col-span-2 flex flex-col gap-6">
+<div class="p-6 bg-white border border-outline-variant rounded-2xl shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">JD</div>
+<div>
+<h5 class="font-label-bold text-label-bold">Jun-ho D.</h5>
+<p class="text-[12px] text-outline">고등학교 2학년</p>
+</div>
+</div>
+<div class="flex text-discovery-orange scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant italic">"이 책은 제가 소셜 미디어와 개인정보 보호에 대해 생각하는 방식을 완전히 바꿔 놓았습니다. 잭스는 정말 공감 가는 주인공이에요. 결말은 정말 충격적이었어요!"</p>
+</div>
+<div class="p-6 bg-white border border-outline-variant rounded-2xl shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-secondary">MK</div>
+<div>
+<h5 class="font-label-bold text-label-bold">Min-ji K.</h5>
+<p class="text-[12px] text-outline">청소년 독서 클럽</p>
+</div>
+</div>
+<div class="flex text-discovery-orange scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant italic">"세계관 설정이 정말 멋져요. 중간에 약간 느려지는 부분이 있긴 하지만 클라이맥스가 모든 걸 보상해 줍니다. SF 팬들에게 강력 추천합니다."</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-container-padding-mobile md:px-container-padding-desktop mt-section-gap bg-surface-container">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-4">BookStep</h4>
+<p class="text-body-sm text-on-surface-variant max-w-sm">디지털 탐색과 학문적 수월성을 통해 청소년 독자들에게 힘을 실어줍니다. 당신의 다음 모험이 여기서 시작됩니다.</p>
+</div>
+<div class="flex flex-wrap gap-6">
+<a class="text-label-bold text-on-surface-variant hover:text-primary transition-all" href="#">서비스 소개</a>
+<a class="text-label-bold text-on-surface-variant hover:text-primary transition-all" href="#">사서에게 문의</a>
+<a class="text-label-bold text-on-surface-variant hover:text-primary transition-all" href="#">개인정보 처리방침</a>
+<a class="text-label-bold text-on-surface-variant hover:text-primary transition-all" href="#">안전 센터</a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-outline-variant mt-8 pt-8 flex justify-between items-center">
+<p class="text-body-sm text-on-surface-variant">© 2024 BookStep 디지털 도서관. 청소년 독자의 성장을 지원합니다.</p>
+<div class="flex gap-4">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm text-primary">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-4 md:hidden bg-surface-container-lowest border-t border-outline-variant z-50 shadow-[0_-4px_20px_rgba(30,41,59,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-caps">홈</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-label-caps">탐색</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-xl px-4 py-1 scale-90" href="#">
+<span class="material-symbols-outlined">book_4</span>
+<span class="text-label-caps">내 서재</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps">계정</span>
+</a>
+</nav>
+<script>
+        function handleLoan() {
+            const btn = document.getElementById('loan-btn');
+            const btnText = document.getElementById('loan-text');
+            const badge = document.getElementById('availability-badge');
+            
+            // Check current state from localStorage simulation
+            const isBorrowed = localStorage.getItem('book_loaned') === 'true';
+
+            if (!isBorrowed) {
+                // Perform Borrowing Action
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span><span>처리 중...</span>';
+                btn.classList.add('opacity-80', 'pointer-events-none');
+
+                setTimeout(() => {
+                    localStorage.setItem('book_loaned', 'true');
+                    btn.classList.remove('opacity-80', 'pointer-events-none', 'bg-book-indigo');
+                    btn.classList.add('bg-error-container', 'text-on-error-container');
+                    btn.innerHTML = '<span class="material-symbols-outlined">assignment_return</span><span>도서 반납하기</span>';
+                    
+                    badge.classList.remove('bg-fresh-mint');
+                    badge.classList.add('bg-muted-steel');
+                    badge.innerHTML = '<span class="w-2 h-2 bg-white rounded-full"></span>대출 중';
+                    
+                    // Small toast notification effect
+                    alert('도서 대출이 완료되었습니다! "내 서재"에서 확인하실 수 있습니다.');
+                }, 1000);
+            } else {
+                // Perform Returning Action
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span><span>반납 중...</span>';
+                
+                setTimeout(() => {
+                    localStorage.setItem('book_loaned', 'false');
+                    btn.classList.remove('bg-error-container', 'text-on-error-container');
+                    btn.classList.add('bg-book-indigo', 'text-white');
+                    btn.innerHTML = '<span class="material-symbols-outlined">menu_book</span><span>지금 대출하기</span>';
+                    
+                    badge.classList.remove('bg-muted-steel');
+                    badge.classList.add('bg-fresh-mint');
+                    badge.innerHTML = '<span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>지금 대출 가능';
+                }, 1000);
+            }
+        }
+
+        // Initialize UI state on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBorrowed = localStorage.getItem('book_loaned') === 'true';
+            const btn = document.getElementById('loan-btn');
+            const badge = document.getElementById('availability-badge');
+
+            if (isBorrowed) {
+                btn.classList.remove('bg-book-indigo');
+                btn.classList.add('bg-error-container', 'text-on-error-container');
+                btn.innerHTML = '<span class="material-symbols-outlined">assignment_return</span><span>도서 반납하기</span>';
+                
+                badge.classList.remove('bg-fresh-mint');
+                badge.classList.add('bg-muted-steel');
+                badge.innerHTML = '<span class="w-2 h-2 bg-white rounded-full"></span>대출 중';
+            }
+        });
+    </script>
+</body></html>

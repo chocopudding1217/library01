@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .active-tab-indicator {
+            view-transition-name: active-tab;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdcc5",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1e",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-container": "#693300",
+                    "on-surface-variant": "#464555",
+                    "surface-container": "#eceef0",
+                    "tertiary-fixed": "#62fae3",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "muted-steel": "#64748B",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "primary": "#3525cd",
+                    "ink-slate": "#1E293B",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "outline": "#777587",
+                    "on-tertiary-fixed": "#00201c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#5af3dd",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#0f0069",
+                    "on-secondary-fixed-variant": "#713700",
+                    "surface": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "secondary-fixed-dim": "#ffb783",
+                    "fresh-mint": "#2DD4BF",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c7c4d8",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-container": "#fd933d",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#4d44e3",
+                    "discovery-orange": "#FB923C",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "primary-container": "#4f46e5",
+                    "tertiary": "#005349",
+                    "on-secondary-fixed": "#301400",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#006d61",
+                    "book-indigo": "#4F46E5",
+                    "on-primary-container": "#dad7ff",
+                    "secondary": "#944a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "container-padding-desktop": "2rem",
+                    "container-padding-mobile": "1rem",
+                    "section-gap": "3rem",
+                    "gutter": "1rem"
+            },
+            "fontFamily": {
+                    "label-bold": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-caps": ["Be Vietnam Pro"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 bg-surface shadow-[0px_4px_20px_rgba(30,41,59,0.05)] w-full">
+<div class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-4 max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">BookStep</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">둘러보기</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">내 서재</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">장르별</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">커뮤니티</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed border-2 border-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8">
+<!-- Profile Section -->
+<section class="mb-section-gap">
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-low p-6 md:p-10 shadow-sm flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+<!-- Background Decoration -->
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="flex flex-col md:flex-row items-center md:items-start gap-6 z-10">
+<div class="relative">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden shadow-xl">
+<img alt="김북이 프로필 사진" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuLDDiVS8suMlQcrQDdAYX9annpIARQZ0bF8C4yO-tVobw86NWskJwXLFIvxjhSQXyE_KbNSctsib6Vs4e_uUEDE7vr7SQG3CwMPxnojNB9T2sDGfRbKeVHVGhBBcEk-pjWHvB9TAQ52TMS9a-J5bIxxe8HNGV0tg58F1BRjAsYxj-egP0WX5WMDDLKc3hlmzipZjM_c93KGiwsYycwuC8HlS5rUamg8CPNDASd7MaGwsbWeoClw0ml8Ybsi0KtYdqqvK85D6NK3p3"/>
+</div>
+<button class="absolute -bottom-2 -right-2 bg-book-indigo text-white p-2 rounded-xl shadow-lg border-2 border-surface">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<div class="text-center md:text-left">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-ink-slate mb-1">김북이</h1>
+<p class="font-body-md text-muted-steel mb-4">bookie_teen@bookstep.edu</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-2">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-label-bold text-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">auto_stories</span> 하이틴 소설
+                            </span>
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-label-bold text-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">science</span> SF/공상과학
+                            </span>
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-label-bold text-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">mystery</span> 미스터리
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex gap-3 z-10">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest border border-outline-variant text-on-surface-variant rounded-xl font-label-bold hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined">settings</span>
+                        설정
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-discovery-orange text-white rounded-xl font-label-bold shadow-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        장르 추천받기
+                    </button>
+</div>
+</div>
+</section>
+<!-- Tabs Menu -->
+<section class="mb-8 overflow-x-auto hide-scrollbar">
+<div class="flex border-b border-outline-variant gap-8 min-w-max">
+<button class="pb-4 px-2 font-headline-sm text-headline-sm text-primary border-b-2 border-primary transition-all active-tab-indicator" id="tab-bookmarks" onclick="switchTab('bookmarks')">
+                    내 북마크
+                </button>
+<button class="pb-4 px-2 font-headline-sm text-headline-sm text-on-surface-variant hover:text-primary transition-all" id="tab-loans" onclick="switchTab('loans')">
+                    대출 중인 도서
+                </button>
+<button class="pb-4 px-2 font-headline-sm text-headline-sm text-on-surface-variant hover:text-primary transition-all" id="tab-history" onclick="switchTab('history')">
+                    독서 기록
+                </button>
+</div>
+</section>
+<!-- Content Area: Book Lists (Bento Grid Style) -->
+<section class="min-h-[400px]" id="tab-content">
+<!-- Bookmark Tab Content (Initial) -->
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-gutter" id="content-bookmarks">
+<!-- Book Card 1 -->
+<div class="group flex flex-col gap-3">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+<img alt="별빛 여정 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz8tmZsrVYOeCdfZyDRecMCdaWa2-5-yKRwUDmiDPip8cRDgVRKHgLqrBVxY3n6uJ6LA3tWT82J0Hao6m8I3_qyvJ6RXNb7qc5jJNLaewET_ublyM_Nskxj3MazNlvhHX4FemvAqN4fCuQnbqUQh-498IgloBMsuK4q7lVrrwGX3Cu3XOtFRsL_m7f1P3Lkoi4J-sGKfO9V7974RGFAlvU-BZFKqCcqYjNJroJUPk0oGpo_pLrHrj_ZtacjIOXIB6ELabcg7NriwJj"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+<div class="absolute bottom-2 right-2 bg-discovery-orange text-white text-[10px] px-2 py-0.5 rounded-full font-bold">신규</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">별빛 여정</h3>
+<p class="font-body-sm text-body-sm text-muted-steel">엘레나 반스</p>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group flex flex-col gap-3">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+<img alt="숨겨진 열쇠 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChiUJGks42gbZIwlp2IZ7OVwxkUeWZfcNKc14mXfHsTrOYXY67i8c3-qrT9WB8S1j1dL_mHBup3qSbwbu4rAOYJ1qBC60OZtpqb4yKVFsmy9khLL-C1rHPzCwcbB4W2YoTU8izrqzOcngwt9ip4JZLsNR2DnJV4wV34Mj5zaGESYL-cuGKp2jci6jqRUunNLh9nSthOVh9HHs3XbP7Qx4TFBE_VzS6VsEbV37Z5XmKy-ewNttnmIK5GyArLRyhJ_OOlv2nrT3TNn3v"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">숨겨진 열쇠</h3>
+<p class="font-body-sm text-body-sm text-muted-steel">마커스 쏜</p>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="group flex flex-col gap-3">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+<img alt="네온 섀도우 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAgTaLKzL9GlvbkDjTxoul4zYKQEcnSckoyWp2Z5digoQN9JQa9xMHyiVhhdyXvJasasxR-PZnFaH_RTNRo9QIYeoW43AgmYhuJb22jAyb7G1oc0zgf3cmhB-HFVzCOHHta2On0Ox24WTlTnMRy4wXhoz7saXpsebFlTxyCpCP1oKdqj5l1AmD9GL7I7ue7p8-DyUqF8BtV8fVhtw2Mr4trCvfcXRTZcgnGHrxZTCT1qnbwf5zaCcWHdPPphpR75kDCmu4TWoTJxxi"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">네온 섀도우</h3>
+<p class="font-body-sm text-body-sm text-muted-steel">소라 박</p>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="group flex flex-col gap-3">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+<img alt="여름으로 난 창 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyfYg27JS0874LXYTRvbRrayUPWB7gk_6IaU-vifAFasdL5_ndNskdY0LjVqYDoXfToFkDOVTmFFXY9vCJtdofXLrPcRV1GZAoBZHzarj6tt5G778vGLHUkmddaUpBP4uAslEILfywoqPmIbSWDm4wctdstDzsV_v9xmJduWMWq5D3LcHc2xgi9ryzabnOJlEOkZe73EIi5ycommC4wmZILVlWCKs2f3j_N8zFJB-Ez5QTdXbSjSUjk8wotczLhdgXrBdZuIjyg9yd"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">여름으로 난 창</h3>
+<p class="font-body-sm text-body-sm text-muted-steel">이지원</p>
+</div>
+</div>
+<!-- Book Card 5 -->
+<div class="group flex flex-col gap-3">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+<img alt="디지털의 뿌리 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXljCg84YIaZmvEF14lYCuFx9Mp5pnGtyTwF89_qKTGwRwlz_CWpOZ7O4gO8Vr06OmWuk35kyte9ol72rSTY-_mOdC7Gl6mWuIo2UBAou9Hk2BWzQxpUVQc4NhIBNbIBoR8oTtfpLDR2j1k9RJvRqjo5hKM_1_6p7ZM25AognxMgK-z6oOR14AI0Y3vYlCZQfG1tz8YyF5g8dmtqYleajQxQyEkQED9anoePe_u8mTRNKwPSZ-nQWaukOnAkCvDHkNbQ2e55pEftw-"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">디지털의 뿌리</h3>
+<p class="font-body-sm text-body-sm text-muted-steel">테크 아카데미</p>
+</div>
+</div>
+</div>
+<!-- Content for Loans (Hidden by default) -->
+<div class="hidden flex flex-col gap-6" id="content-loans">
+<div class="bg-surface-container rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+<div class="w-32 h-48 rounded-lg overflow-hidden shadow-md flex-shrink-0">
+<img alt="용의 숨결 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEF-YDGUQ92hk-BbaD1HB4ld4AJUgct9D3RKZO0HOahN72FElcU0-Pn0nveHfMOm_jBNeGRA9II6CDKWkn-XW4n_gePlj9vb31szhlnOjSFw4kDwe4Xn6ZVUyobjeLwadN6zJikrM8KnIYtlrtzDU-piTNI2U1ejqBImJTjvtSzoocrzZSwK0hU269NgPaqMHEu_sXsrf4_J3Ngpr-nWpyhPfBRft16W6ersqqXi0lWe_a3_Nm1e_94Mrbn-esKQTC8EDVKuzQY8Vy"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">용의 숨결</h3>
+<p class="text-on-surface-variant font-body-md">반납 예정일: 2024. 05. 24 (D-3)</p>
+</div>
+<button class="bg-book-indigo text-white px-6 py-2 rounded-xl font-label-bold">독서 시작하기</button>
+</div>
+<div class="w-full bg-outline-variant h-2 rounded-full overflow-hidden">
+<div class="bg-fresh-mint h-full w-[65%]"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-bold text-on-surface-variant">
+<span>65% 읽음</span>
+<span>124 / 190 페이지</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 opacity-80">
+<div class="w-32 h-48 rounded-lg overflow-hidden shadow-md flex-shrink-0">
+<img alt="현대 윤리학 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXBpTh3WOkQTjS0bhPa9gi1BzMTPBm2lktYqUhs7MN0b4NqHomoUe1soz0vtSbVkttlO6Q3redPNHWsjuF49J7k8QS2GWGCwHzli9f7Re8J2UCNdHaJDkt5FXN1FTx9vAm_AydcqOYYr82dsI-OEBwPaPk4gvpvdEADIfIaDCQ6mReYImtBCwKelIKW3pgKsiEq1sNo4e5ffgkZbzam4ZaMljn5MqSfZgmvDGAgNh03mPyJ6Kk3XNtlecDD8Ybqcam9uG_1hf0JRx8"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">현대 윤리학</h3>
+<p class="text-on-surface-variant font-body-md">반납 예정일: 2024. 05. 28 (D-7)</p>
+</div>
+<button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-xl font-label-bold">독서 시작하기</button>
+</div>
+<div class="w-full bg-outline-variant h-2 rounded-full overflow-hidden">
+<div class="bg-fresh-mint h-full w-[12%]"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-bold text-on-surface-variant">
+<span>12% 읽음</span>
+<span>24 / 210 페이지</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content for History (Hidden by default) -->
+<div class="hidden" id="content-history">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors border-b border-outline-variant/30">
+<div class="w-12 h-16 rounded-md overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="최고의 성과 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBznWAiCm2tpKUe1QR32aHztIOhCd0fKv7sZg1wFm0BscDLL1XRWN9bXU0tu_RVMmCcDSfLWLkyID5hmUO7lQNxSH7bQ8whTiLbbM8jWvXmdYdir0tc5pq2S7tGUREiKSbG33F6Y5yHc8uYxoszoVmYqBJMJ3lp9ekLPyIiDx697D9_kzy_llynby3bfEiUtZsN3ZmOmBs5suXJLTGh4LZFvh0tUe19Opmueb2kV5sepswLMnZyV1bzYXHL7l1cgD-wL5yhVche4McF"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-bold text-on-surface">최고의 성과</h4>
+<p class="text-body-sm text-on-surface-variant">완독일: 2024. 05. 15</p>
+</div>
+<div class="flex gap-1 text-discovery-orange">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors border-b border-outline-variant/30">
+<div class="w-12 h-16 rounded-md overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="코드와 영혼 도서 커버" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGMgmTV8PguNrWfbiEsIjLE6bnkv7m6UxY0E_Ve9HifzpWQsW3HsH3bSKpu2dznqSE2Axorp1XXrxl9RxQIWZWJvVdZGr6j8ef_sjGmbgkaaYPNEdhYr7EqyZlUrXzPsdSWQMsg3MglQZfcsRNXNIF0cIjmKUxk_4-yuHyML0scDDQQDlO9Z-7kZo7w4tviKpVOdC85ZTgLMHusmfI-vHqqq9TLlKvfuJF4w7KemwG6Rf6JEhxq9b-K7FefMDjC-K9poloueKBmk30"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-bold text-on-surface">코드와 영혼</h4>
+<p class="text-body-sm text-on-surface-variant">완독일: 2024. 05. 02</p>
+</div>
+<div class="flex gap-1 text-discovery-orange">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-12 px-container-padding-mobile md:px-container-padding-desktop mt-section-gap bg-surface-container border-t border-outline-variant">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary mb-4">BookStep</div>
+<p class="text-body-sm text-on-surface-variant max-w-sm">© 2024 BookStep 디지털 도서관. 차세대 디지털 발견으로 청소년 독자들에게 힘을 실어줍니다.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4">
+<a class="text-on-surface-variant hover:text-primary font-label-bold transition-opacity" href="#">소개</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold transition-opacity" href="#">사서에게 문의하기</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold transition-opacity" href="#">개인정보 처리방침</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold transition-opacity" href="#">이용약관</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold transition-opacity" href="#">안전 센터</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom NavBar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-4 md:hidden bg-surface-container-lowest border-t border-outline-variant z-50 shadow-[0_-4px_20px_rgba(30,41,59,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">홈</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps">둘러보기</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">book_4</span>
+<span class="font-label-caps text-label-caps">내 서재</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-xl px-4 py-1 transform scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">계정</span>
+</a>
+</nav>
+<script>
+        function switchTab(tabId) {
+            // Hide all content
+            document.getElementById('content-bookmarks').classList.add('hidden');
+            document.getElementById('content-loans').classList.add('hidden');
+            document.getElementById('content-history').classList.add('hidden');
+            
+            // Show selected content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            if(tabId === 'bookmarks') document.getElementById('content-bookmarks').classList.add('grid');
+
+            // Update Tab styles
+            const tabs = ['bookmarks', 'loans', 'history'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                if(t === tabId) {
+                    el.classList.add('text-primary', 'border-b-2', 'border-primary');
+                    el.classList.remove('text-on-surface-variant');
+                } else {
+                    el.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                    el.classList.add('text-on-surface-variant');
+                }
+            });
+        }
+    </script>
+</body></html>
